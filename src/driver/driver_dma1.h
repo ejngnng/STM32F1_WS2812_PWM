@@ -36,7 +36,30 @@
  * 
  */
 
-void driver_dma1_setup();
+void driver_dma1_clock_setup();
+
+// TIM4_CH1 or TIM2_CH3
+void driver_dma1_ch1_setup();
+
+// TIM3_CH3 or TIM1 CH1
+void driver_dma1_ch2_setup();
+
+// TIM3_CH4 or TIM1_CH2
+void driver_dma1_ch3_setup();
+
+// TIM4_CH2 or TIM1_CH4
+void driver_dma1_ch4_setup();
+
+// TIM4_CH3 or TIM2_CH1
+void driver_dma1_ch5_setup();
+
+// TIM3_CH1 or TIM1_CH3
+void driver_dma1_ch6_setup();
+
+// TIM2_CH2 or TIM2_CH3
+void driver_dma1_ch7_setup();
+
+void driver_dma1_setup(uint8_t channel);
 
 void driver_tim2ch1_dma1ch5_transmit(uint8_t *tx_buf, int tx_len);
 
@@ -44,7 +67,14 @@ void driver_dma_start();
 
 void driver_dma_stop();
 
-/* DMA Channel5 transmit completed interrupt */
+void driver_dma_transmit(uint8_t channel, uint8_t *tx_buf, uint8_t tx_len);
+
+void dma1_channel1_isr();
+void dma1_channel2_isr();
+void dma1_channel3_isr();
+void dma1_channel4_isr();
 void dma1_channel5_isr();
+void dma1_channel6_isr();
+void dma1_channel7_isr();
 
 #endif
