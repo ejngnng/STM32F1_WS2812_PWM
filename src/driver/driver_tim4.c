@@ -44,6 +44,6 @@ void driver_timer4_setup(){
     timer_enable_oc_output(TIM4, TIM_OC1);
     timer_set_oc_value(TIM4, TIM_OC1, 0);  // pwm duty cycle  CCR1/ARR * 100%
     timer_enable_counter(TIM4); 
-    timer_enable_irq(TIM4, TIM_DIER_CC1IE); // enable timer4 CCR1 DMA request
+    timer_enable_irq(TIM4, TIM_DIER_CC1DE); // enable timer4 CCR1 DMA request
 }
 
