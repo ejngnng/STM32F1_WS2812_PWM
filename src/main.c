@@ -3,7 +3,10 @@
 #include "driver/driver_tim4.h"
 #include "driver/driver_tim3.h"
 #include "driver/driver_tim2.h"
+#include "driver/driver_ws2812.h"
+#include "driver/driver_dma1.h"
 
+#define LED_NUMS    3   // 3 leds
 
 int main(){
     rcc_clock_setup_in_hse_8mhz_out_72mhz();
@@ -13,25 +16,23 @@ int main(){
     driver_tick_setup();
     driver_usart1_setup();
     driver_timer2_setup();
-    driver_timer3_setup();
-    driver_timer4_setup();
+    driver_dma1_setup();
+    // driver_timer3_setup();
+    // driver_timer4_setup();
+    driver_ws2812_setup(LED_NUMS);
     printf("setup done\n");
     while(1){
-        // timer_disable_oc_output(TIM2, TIM_OC1);
-        // timer_disable_oc_output(TIM3, TIM_OC2);
-        // timer_disable_oc_output(TIM4, TIM_OC1);
-        // timer_set_oc_value(TIM2, TIM_OC1, 0);
-        // timer_set_oc_value(TIM3, TIM_OC2, 0);
-        // timer_set_oc_value(TIM4, TIM_OC1, 0);
+		driver_ws2812_set_pixel_rgb(RGB_Red, 0);
+		driver_ws2812_set_pixel_rgb(RGB_Black, 1);
+		driver_ws2812_set_pixel_rgb(RGB_Black, 2);
+		driver_ws2812_show();
+		// delay_ms(500);
+		// for(uint8_t i=0; i<2; i++){
+		// 	driver_ws2812_set_pixel_rgb(RGB_Black, i);
+		// }
+		// driver_ws2812_show();
         delay_ms(100);
         gpio_toggle(GPIOC, GPIO13);
-        // timer_enable_oc_output(TIM2, TIM_OC1);
-        // timer_enable_oc_output(TIM3, TIM_OC2);
-        // timer_enable_oc_output(TIM3, TIM_OC1);
-        // timer_set_oc_value(TIM2, TIM_OC1, 26);
-        // timer_set_oc_value(TIM3, TIM_OC2, 26);
-        // timer_set_oc_value(TIM4, TIM_OC1, 26);
-        // delay_ms(300);
     }
     return 0;
 }

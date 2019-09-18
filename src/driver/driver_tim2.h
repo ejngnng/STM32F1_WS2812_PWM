@@ -8,4 +8,6 @@
 
 void driver_timer2_setup();
 
+void tim2_isr();
+
 #endif

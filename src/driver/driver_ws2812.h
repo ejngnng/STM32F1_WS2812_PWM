@@ -20,8 +20,8 @@
 * G7~G0 R7~-R0 B7~B0
 */
 
-#define WS2812_BIT1    0xF8
-#define WS2812_BIT0    0xE0
+#define WS2812_BIT1    19       // duty cycle 67%
+#define WS2812_BIT0    9        // duty cycle 33%
 
 
 void driver_ws2812_setup(uint8_t nums);
