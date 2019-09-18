@@ -16,22 +16,24 @@ int main(){
     driver_tick_setup();
     driver_usart1_setup();
     driver_timer2_setup();
-    driver_dma1_setup();
-    // driver_timer3_setup();
-    // driver_timer4_setup();
+    driver_timer3_setup();
+    driver_timer4_setup();
+    driver_dma1_setup(DMA_CHANNEL1); // TIM4_CH1
+    driver_dma1_setup(DMA_CHANNEL5); // TIM2_CH5
+    driver_dma1_setup(DMA_CHANNEL6); // TIM3_CH1
     driver_ws2812_setup(LED_NUMS);
     printf("setup done\n");
     while(1){
 		driver_ws2812_set_pixel_rgb(RGB_Red, 0);
-		driver_ws2812_set_pixel_rgb(RGB_Black, 1);
-		driver_ws2812_set_pixel_rgb(RGB_Black, 2);
+		driver_ws2812_set_pixel_rgb(RGB_Green, 1);
+		driver_ws2812_set_pixel_rgb(RGB_Blue, 2);
 		driver_ws2812_show();
-		// delay_ms(500);
-		// for(uint8_t i=0; i<2; i++){
-		// 	driver_ws2812_set_pixel_rgb(RGB_Black, i);
-		// }
-		// driver_ws2812_show();
-        delay_ms(100);
+		delay_ms(300);
+		for(uint8_t i=0; i<2; i++){
+			driver_ws2812_set_pixel_rgb(RGB_Black, i);
+		}
+		driver_ws2812_show();
+        delay_ms(300);
         gpio_toggle(GPIOC, GPIO13);
     }
     return 0;
