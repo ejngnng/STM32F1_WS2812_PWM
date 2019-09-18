@@ -33,16 +33,16 @@ void driver_timer4_setup(){
         TIM_CR1_DIR_UP
     );
 
-    timer_set_prescaler(TIM4, 36000000/24000000 - 1);
+    timer_set_prescaler(TIM4, 72000000/24000000 - 1);
     timer_enable_preload(TIM4);
-    timer_set_period(TIM4, 90-1); // pwm frequency 72M/(ARR+1) *(PSC+1) Hz
+    timer_set_period(TIM4, 29); // pwm frequency 72M/(ARR+1) *(PSC+1) Hz
     timer_continuous_mode(TIM4);
 
     timer_disable_oc_output(TIM4, TIM_OC1);
     timer_set_oc_mode(TIM4, TIM_OC1, TIM_OCM_PWM1);
     timer_enable_oc_preload(TIM4, TIM_OC1);
     timer_enable_oc_output(TIM4, TIM_OC1);
-    timer_set_oc_value(TIM4, TIM_OC1, 89-26);  // pwm duty cycle  CCR1/ARR * 100%
+    timer_set_oc_value(TIM4, TIM_OC1, 0);  // pwm duty cycle  CCR1/ARR * 100%
     timer_enable_counter(TIM4); 
 }
 
