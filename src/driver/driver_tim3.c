@@ -10,7 +10,7 @@
  *  
  */
 
-// TIM3 CH2 PA7 drive WS2812
+// TIM3 CH1 PA6 drive WS2812
 void driver_timer3_setup(){
     rcc_periph_clock_enable(RCC_GPIOA);
     rcc_periph_clock_enable(RCC_TIM3);
@@ -29,7 +29,7 @@ void driver_timer3_setup(){
         GPIOA,
         GPIO_MODE_OUTPUT_50_MHZ,
         GPIO_CNF_OUTPUT_ALTFN_PUSHPULL,
-        GPIO7
+        GPIO6
     );
 
     timer_disable_counter(TIM3);
@@ -47,11 +47,11 @@ void driver_timer3_setup(){
     timer_set_period(TIM3, 29); // pwm frequency 72M/(ARR+1) *(PSC+1) Hz
     timer_continuous_mode(TIM3);
 
-    timer_disable_oc_output(TIM3, TIM_OC2);
-    timer_set_oc_mode(TIM3, TIM_OC2, TIM_OCM_PWM1);
-    timer_enable_oc_preload(TIM3, TIM_OC2);
-    timer_enable_oc_output(TIM3, TIM_OC2);
-    timer_set_oc_value(TIM3, TIM_OC2, 0);  // pwm duty cycle  CCR1/ARR * 100%
+    timer_disable_oc_output(TIM3, TIM_OC3);
+    timer_set_oc_mode(TIM3, TIM_OC1, TIM_OCM_PWM1);
+    timer_enable_oc_preload(TIM3, TIM_OC1);
+    timer_enable_oc_output(TIM3, TIM_OC1);
+    timer_set_oc_value(TIM3, TIM_OC1, 0);  // pwm duty cycle  CCR1/ARR * 100%
     timer_enable_counter(TIM3);
-    timer_enable_irq(TIM3, TIM_DIER_CC2DE); // enable timer3 CCR3 DMA reqeuest
+    timer_enable_irq(TIM3, TIM_DIER_CC1DE); // enable timer3 CCR3 DMA reqeuest
 }
