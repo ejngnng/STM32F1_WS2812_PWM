@@ -42,7 +42,7 @@ static void driver_ws2812_set_rgb(rgb_t rgb, uint8_t *buffer){
 }
 
 void driver_ws2812_set_pixel_rgb(rgb_t rgb, uint8_t nums){
-    driver_ws2812_set_rgb(rgb, &frame_buffer[2 + nums * 24]);
+    driver_ws2812_set_rgb(rgb, &frame_buffer[1 + nums * 24]);
 }
 
 void driver_ws2812_show(){
