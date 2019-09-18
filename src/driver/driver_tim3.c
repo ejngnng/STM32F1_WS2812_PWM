@@ -53,4 +53,5 @@ void driver_timer3_setup(){
     timer_enable_oc_output(TIM3, TIM_OC2);
     timer_set_oc_value(TIM3, TIM_OC2, 0);  // pwm duty cycle  CCR1/ARR * 100%
     timer_enable_counter(TIM3);
+    timer_enable_irq(TIM3, TIM_DIER_CC2DE); // enable timer3 CCR3 DMA reqeuest
 }
